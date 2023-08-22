@@ -92,9 +92,21 @@ void run() {
         {
             if (event.type == sf::Event::Closed)
                 window.close();
+            
             if (event.type == sf::Event::TextEntered) {
                 editor.updateText(event.text.unicode);
                 editor.updateCursor();
+            }
+            
+            // handle keypressed
+            if (event.type == sf::Event::KeyPressed)
+            {
+                // Check for ctrl + x for exit
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::X) && sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
+                {
+                    std::cout << "Exiting... " << std::endl;
+                    window.close();
+                }
             }
         }
 
